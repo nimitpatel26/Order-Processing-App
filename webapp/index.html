@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=page-width, initial-scale=1.0">
+   <title>Happy Flowers - Order</title>
+   <link rel="stylesheet" href="happy.css" />
+   <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+</head>
+
+<script>
+
+   function sameAsBilling(){
+      if (!document.getElementById("deliveryBillingSameAdd").checked){
+         enableAll();
+         return;
+      }
+
+
+      document.getElementById("firstnameDelivery").value = document.getElementById("firstnameBilling").value;
+      document.getElementById("lastnameDelivery").value = document.getElementById("lastnameBilling").value;
+      document.getElementById("addressDelivery").value = document.getElementById("addressBilling").value;
+      document.getElementById("cityDelivery").value = document.getElementById("cityBilling").value;
+      document.getElementById("stateDelivery").value = document.getElementById("stateBilling").value;
+      document.getElementById("zipDelivery").value = document.getElementById("zipBilling").value;
+      document.getElementById("phoneDelivery").value = document.getElementById("phoneBilling").value;
+
+      disableAll();
+   }
+
+   function enableAll(){
+      document.getElementById("firstnameDelivery").disabled = false;
+      document.getElementById("lastnameDelivery").disabled = false;
+      document.getElementById("addressDelivery").disabled = false;
+      document.getElementById("cityDelivery").disabled = false;
+      document.getElementById("stateDelivery").disabled = false;
+      document.getElementById("zipDelivery").disabled = false;
+      document.getElementById("phoneDelivery").disabled = false;
+   }
+
+   function disableAll(){
+      document.getElementById("firstnameDelivery").disabled = true;
+      document.getElementById("lastnameDelivery").disabled = true;
+      document.getElementById("addressDelivery").disabled = true;
+      document.getElementById("cityDelivery").disabled = true;
+      document.getElementById("stateDelivery").disabled = true;
+      document.getElementById("zipDelivery").disabled = true;
+      document.getElementById("phoneDelivery").disabled = true;
+   }
+
+   function submitted(){
+      enableAll();
+      document.getElementById("custMsg").disabled = false;
+   }
+
+   function msgTypeChange(radio){
+      if (radio.value.toLowerCase().includes("custom")){
+         document.getElementById("custMsg").disabled = false;
+      }else{
+         document.getElementById("custMsg").disabled = true;
+         document.getElementById("custMsg").value = "";
+      }
+   }
+
+</script>
+
+<body>
+   <div class="container">
+      <header>
+         <h1>
+            Happy Flowers
+         </h1>
+      </header>
+
+      <nav>
+         <ul>
+            <li><a href="#">Floral Arrangements</a></li>
+            <li><a href="#">Seasonal Bouquets</a></li>
+            <li><a href="#">Live Plants</a></li>
+            <li><a href="#">Shop by Price</a></li>
+         </ul>
+      </nav>
+   </div>
+
+   <article>
+      <h2>Place an Order</h2>
+      <div id="errorText"></div>
+      <form action="processor" method="get">
+         <fieldset id="message" class="checks labelInputBlock">
+			<legend>Message</legend>
+
+
+            <input type="radio" name="msgType" id="msg1" value="Congratulations!" checked onclick="msgTypeChange(this)">
+            <label for="msg1">Congratulations!</label>
+
+            <input type="radio" name="msgType" id="msg2" value="Happy Birthday!" onclick="msgTypeChange(this)">
+            <label for="msg2">Happy Birthday!</label>
+
+            <input type="radio" name="msgType" id="msg3" value="Happy Anniversary!" onclick="msgTypeChange(this)">
+            <label for="msg3">Happy Anniversary!</label>
+
+            <input type="radio" name="msgType" id="msg4" value="I love you!" onclick="msgTypeChange(this)">
+            <label for="msg4">I love you!</label>
+
+            <input type="radio" name="msgType" id="msgCust" value="Custom message:" onclick="msgTypeChange(this)">
+            <label for="msgCust">Custom message:</label>
+
+            <textarea name="custMsg" id="custMsg" disabled = true placeholder="Enter custom message here (max 250 characters)"></textarea>
+
+          </fieldset>
+
+
+         <fieldset id="billingAddress" class="text textFloat labelInputBlock">
+            <legend>Billing Address</legend>
+
+            <label for="firstnameBilling">First Name</label>
+            <input type="text" name="firstnameBilling" id="firstnameBilling" autofocus required>
+
+            <label for="lastnameBilling">Last Name</label>
+            <input type="text" name="lastnameBilling" id="lastnameBilling" required>
+
+            <label for="addressBilling">Street Address</label>
+            <input type="text" name="addressBilling" id="addressBilling" required>
+
+            <label for="cityBilling">City</label>
+            <input type="text" name="cityBilling" id="cityBilling" required>
+
+            <label for="stateBilling">State</label>
+            <select type="text" name="stateBilling" id="stateBilling" required>
+               <option value="AL">AL</option>
+               <option value="AK">AK</option>
+               <option value="AR">AR</option>
+               <option value="AZ">AZ</option>
+               <option value="CA">CA</option>
+               <option value="CO">CO</option>
+               <option value="CT">CT</option>
+               <option value="DC">DC</option>
+               <option value="DE">DE</option>
+               <option value="FL">FL</option>
+               <option value="GA">GA</option>
+               <option value="HI">HI</option>
+               <option value="IA">IA</option>
+               <option value="ID">ID</option>
+               <option value="IL">IL</option>
+               <option value="IN">IN</option>
+               <option value="KS">KS</option>
+               <option value="KY">KY</option>
+               <option value="LA">LA</option>
+               <option value="MA">MA</option>
+               <option value="MD">MD</option>
+               <option value="ME">ME</option>
+               <option value="MI">MI</option>
+               <option value="MN">MN</option>
+               <option value="MO">MO</option>
+               <option value="MS">MS</option>
+               <option value="MT">MT</option>
+               <option value="NC">NC</option>
+               <option value="NE">NE</option>
+               <option value="NH">NH</option>
+               <option value="NJ">NJ</option>
+               <option value="NM">NM</option>
+               <option value="NV">NV</option>
+               <option value="NY">NY</option>
+               <option value="ND">ND</option>
+               <option value="OH">OH</option>
+               <option value="OK">OK</option>
+               <option value="OR">OR</option>
+               <option value="PA">PA</option>
+               <option value="RI">RI</option>
+               <option value="SC">SC</option>
+               <option value="SD">SD</option>
+               <option value="TN">TN</option>
+               <option value="TX">TX</option>
+               <option value="UT">UT</option>
+               <option value="VT">VT</option>
+               <option value="VA">VA</option>
+               <option value="WA">WA</option>
+               <option value="WI">WI</option>
+               <option value="WV">WV</option>
+               <option value="WY">WY</option>
+            </select>
+
+            <label for="zipBilling">Zip</label>
+            <input type="number" name="zipBilling" id="zipBilling" required>
+
+            <label for="phoneBilling">Phone</label>
+            <input type="number" name="phoneBilling" id="phoneBilling" required>
+
+         </fieldset>
+
+
+         <fieldset id="deliveryAddress" class="text textFloat labelInputBlock">
+            <legend>Delivery Address</legend>
+
+            <label for="deliveryBillingSameAdd">same as billing address</label>
+            <input type="checkbox" id="deliveryBillingSameAdd" onclick="sameAsBilling()">
+
+            <br><br>
+
+            <label for="firstnameDelivery">First Name</label>
+            <input type="text" name="firstnameDelivery" id="firstnameDelivery" autofocus required>
+
+            <label for="lastnameDelivery">Last Name</label>
+            <input type="text" name="lastnameDelivery" id="lastnameDelivery" required>
+
+            <label for="addressDelivery">Street Address</label>
+            <input type="text" name="addressDelivery" id="addressDelivery" required>
+
+            <label for="cityDelivery">City</label>
+            <input type="text" name="cityDelivery" id="cityDelivery" required>
+
+            <label for="stateDelivery">State</label>
+            <select type="text" name="stateDelivery" id="stateDelivery" required >
+               <option value="AL">AL</option>
+               <option value="AK">AK</option>
+               <option value="AR">AR</option>
+               <option value="AZ">AZ</option>
+               <option value="CA">CA</option>
+               <option value="CO">CO</option>
+               <option value="CT">CT</option>
+               <option value="DC">DC</option>
+               <option value="DE">DE</option>
+               <option value="FL">FL</option>
+               <option value="GA">GA</option>
+               <option value="HI">HI</option>
+               <option value="IA">IA</option>
+               <option value="ID">ID</option>
+               <option value="IL">IL</option>
+               <option value="IN">IN</option>
+               <option value="KS">KS</option>
+               <option value="KY">KY</option>
+               <option value="LA">LA</option>
+               <option value="MA">MA</option>
+               <option value="MD">MD</option>
+               <option value="ME">ME</option>
+               <option value="MI">MI</option>
+               <option value="MN">MN</option>
+               <option value="MO">MO</option>
+               <option value="MS">MS</option>
+               <option value="MT">MT</option>
+               <option value="NC">NC</option>
+               <option value="NE">NE</option>
+               <option value="NH">NH</option>
+               <option value="NJ">NJ</option>
+               <option value="NM">NM</option>
+               <option value="NV">NV</option>
+               <option value="NY">NY</option>
+               <option value="ND">ND</option>
+               <option value="OH">OH</option>
+               <option value="OK">OK</option>
+               <option value="OR">OR</option>
+               <option value="PA">PA</option>
+               <option value="RI">RI</option>
+               <option value="SC">SC</option>
+               <option value="SD">SD</option>
+               <option value="TN">TN</option>
+               <option value="TX">TX</option>
+               <option value="UT">UT</option>
+               <option value="VT">VT</option>
+               <option value="VA">VA</option>
+               <option value="WA">WA</option>
+               <option value="WI">WI</option>
+               <option value="WV">WV</option>
+               <option value="WY">WY</option>
+            </select>
+
+            <label for="zipDelivery">Zip</label>
+            <input type="number" name="zipDelivery" id="zipDelivery" required>
+
+            <label for="phoneDelivery">Phone</label>
+            <input type="number" name="phoneDelivery" id="phoneDelivery" required>
+
+         </fieldset>
+
+
+         <fieldset id="deliveryDateField" class="checks" class="text textFloat labelInputBlock">
+            <legend>Delivery Date</legend>
+
+            <br><br><br>
+            <input type="date" name="deliveryDate" id="deliveryDate" required>
+
+         </fieldset>
+
+
+         <fieldset id="paymentInfo" class="text">
+            <legend>Payment</legend>
+
+            <br>
+            <br>
+            <br>
+
+            <label>
+            <input type="radio" name="card" value="cardVisa" id="cardVisa" checked>Visa
+            </label>
+
+            <label>
+            <input type="radio" name="card" value="cardMc" id="cardMc">Master Card
+            </label>
+
+            <label>
+            <input type="radio" name="card" value="cardDis" id="cardDis">Discover
+            </label>
+
+            <label>
+            <input type="radio" name="card" value="cardAe" id="cardAe">American Express
+            </label>
+
+            <br>
+            <label for="cardNum">Card #</label>
+            <input type="number" name="cardNum" id="cardNum" autofocus required>
+
+            <br>
+            <label for="cardExp">Expiration</label>
+            <input type="month" name="cardExp" id="cardExp" required>
+
+            <br>
+            <label for="cvv">CVV</label>
+            <input type="number" name="cvv" id="cvv" required>
+
+
+         </fieldset>
+
+
+         <fieldset id="createAccount" class="text textFloat labelInputBlock">
+            <legend>Create Account?</legend>
+            <p>To be able to access your purchase history and make changes to your order, enter a name and password to create an account.</p>
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" autofocus>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+
+            <label for="passwordAgain">Password (verify)</label>
+            <input type="password" name="passwordAgain" id="passwordAgain">
+
+
+         </fieldset>
+
+
+         <br>
+         <div id="buttonContainer">
+            <input type="submit" value="Place Order" id="orderButton" onclick="submitted()"/>
+         </div>
+      </form>
+   </article>
+   <footer>Happy Flowers <span>&bull;</span> Chicago, IL</footer>
+</body>
+
+
+</html>
